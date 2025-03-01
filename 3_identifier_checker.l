@@ -1,19 +1,21 @@
+/*  
+   LEX Code to identify and print valid C identifiers.  
+*/
+
 %{
-#include <stdio.h>
+  #include <stdio.h>
 %}
 
 %%
-[0-9]+      { printf("This is an integer.\n"); }
-[0-9]*\ .[0-9]+ { printf("This is a floating number.\n"); }
-.           { printf("Not a valid number.\n"); }
+^[a-zA-Z_][a-zA-Z0-9_]*$   { printf("Valid Identifier\n"); }
+.*                         { printf("Invalid Identifier\n"); }
 %%
 
 int main() {
-    printf("Enter the number you want to check: ");
-    yylex(); // convert into stream of token ;  
-    return 0;
+   yylex();  
+   return 0;
 }
 
 int yywrap() {
-    return 1;
+   return 1;  
 }
